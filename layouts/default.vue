@@ -1,84 +1,56 @@
 <template>
-  <div class="bg-white min-h-screen">
-    <Nav />
-    <slot />
-    <Footer />
+  <div class="relative">
+      <div class="h-screen absolute z-10 w-full text-white bg-black">
+        <Sidebar/>
+        <MainBanner />
+        <Navbar />
+        <NuxtPage />
+  </div>
   </div>
 </template>
 
-
 <script setup>
-import Nav from '@/layouts/navbar.vue';
-import Footer from '@/layouts/footer.vue';
+import MainBanner from '~/layouts/mainBanner.vue'
+import Navbar from '~/layouts/navbar.vue'
+import { onMounted, onBeforeUnmount } from 'vue'
+import Sidebar from './sidebar.vue'
+let vantaEffect = null
 
+onMounted(async () => {
+  // CDN'den three.js ve vanta.waves.js yükle
+  await Promise.all([
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'),
+    loadScript('https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js')
+  ])
 
+  // global THREE objesi
+  vantaEffect = window.VANTA.WAVES({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0x0
+  })
+})
 
+onBeforeUnmount(() => {
+  if (vantaEffect) vantaEffect.destroy()
+})
+
+// Script yükleyici
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script')
+    s.src = src
+    s.async = true
+    s.onload = resolve
+    s.onerror = reject
+    document.head.appendChild(s)
+  })
+}
 </script>
 
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-body {
-  padding: 0;
-  margin: 0;
-  font-family: 'poppins';
-  background-color: #DDD;
-}
-
-.navbar {
-  border-bottom: 1px solid #BBBBBB;
-}
-
-.nav-link {
-  font-size: 14px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #00E676;
-  padding: 20px 0px;
-  margin: 0px 20px;
-  display: inline-block;
-  position: relative;
-}
-
-.nav-link:hover {
-  opacity: 1;
-}
-
-.nav-link::before {
-  transition: 300ms;
-  height: 4px;
-  content: "";
-  position: absolute;
-  background-color: #031D44;
-}
-
-.nav-link-ltr::before {
-  width: 0%;
-  bottom: 10px;
-}
-
-.nav-link-ltr:hover::before {
-  width: 100%;
-}
-
-.nav-link-fade-up::before {
-  width: 100%;
-  bottom: 5px;
-  opacity: 0;
-}
-
-.nav-link-fade-up:hover::before {
-  bottom: 10px;
-  opacity: 1;
-}
-
-.nav-link-grow-up::before {
-  height: 0%;
-  width: 100%;
-  bottom: 0px;
-}
-
-.nav-link-grow-up:hover::before {
-  height: 5px;
-}
-</style>

@@ -8,7 +8,11 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        custom: ['CustomFont'], // 'CustomFont' yerine font adınızı yazın
+      },
+    },
   },
   plugins: [],
 }

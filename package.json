@@ -13,7 +13,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.1",
     "autoprefixer": "^10.4.16",
-    "nuxt": "^3.8.0",
+    "nuxt": "^3.15.0",
     "nuxt-aos": "^1.2.1",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
@@ -21,11 +21,22 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@nuxtjs/toast": "^3.3.1",
+    "@pinia/nuxt": "^0.11.1",
+    "@vueuse/core": "^13.5.0",
+    "@vueuse/motion": "^2.1.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.6.5",
     "bootstrap-icons": "^1.11.1",
     "nuxt-swiper": "^1.2.2",
-    "vuex": "^4.0.2"
+    "pinia": "^3.0.3",
+    "three": "^0.178.0",
+    "vanta": "^0.5.24",
+    "vue-countup-v3": "^1.4.1",
+    "vue-scroll-reveal": "^2.1.0"
   }
 }

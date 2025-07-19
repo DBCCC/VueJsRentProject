@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../css/font1.otf')
+  }
+
+
+  .navbar-nav li > a{
+    color: white;
+  }
+  
+  
+  .navbar-nav li > a:after {
+      content: '';
+      display: block;
+      width: 0;
+      border-radius: 25px;
+      height: 2px;
+      background: white;
+      transition: width .3s;
+  }
+  .navbar-nav li > a:hover::after {
+      width: 100%;
+      transition: width .3s;
+  }  
